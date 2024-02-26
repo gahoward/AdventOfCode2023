@@ -1,6 +1,0 @@
-{
-    "rust-analyzer.linkedProjects": [
-        ".\\task1\\Cargo.toml",
-        ".\\task2\\Cargo.toml"
-    ]
-}

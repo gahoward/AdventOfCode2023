@@ -10,6 +10,7 @@
 #Inputs for aoc2023#
 ###################
 *.txt
+.vscode
 
 # Packages #
 ############
