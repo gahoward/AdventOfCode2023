@@ -1,12 +1,12 @@
-use std::collections::BTreeMap;
-use std::collections::HashMap;
-use std::env;
 use std::fs;
 use std::iter::Enumerate;
 use std::str::Chars;
 use std::str::Lines;
 
+static PART_TWO: bool = true;
+
 fn main() {
+   
     let input_file_location: String = String::from("C:\\Development\\aoc2023\\task1\\input.txt");
     let lines: Vec<String> = file_to_vector(input_file_location);
     let mut total: u32 = 0;
@@ -18,18 +18,6 @@ fn main() {
 }
 
 fn number_from_line(line: String) -> u32 {
-    let values_to_replace = BTreeMap::from([
-        ("one", 1),
-        ("two", 2),
-        ("three", 3),
-        ("four", 4),
-        ("five", 5),
-        ("six", 6),
-        ("seven", 7),
-        ("eight", 8),
-        ("nine", 9),
-    ]);
-
     let values_lookup = [
         ("zero"),
         ("one"),
@@ -48,10 +36,10 @@ fn number_from_line(line: String) -> u32 {
     for (pos, c) in char_vec {
         if c.is_numeric() {
             numbers.push(c.to_digit(10).unwrap());
-        } else {
-            for (key, value) in &values_to_replace {
-                if (line[pos..].starts_with(key)) {
-                    numbers.push(*value);
+        } else if PART_TWO == true {
+            for (key, value) in values_lookup.iter().enumerate() {
+                if line[pos..].starts_with(value) {
+                    numbers.push(key.try_into().unwrap());
                 }
             }
         }
